@@ -79,26 +79,6 @@ Além disso:
 
 ---
 
-
-## 📸 Interface do Sistema
-
-### 🔐 Login
-![Login](docs/imgs/Login.png)
-
-### 📊 Dashboard
-![Dashboard](docs/img/dashboard.png)
-
-### 🚗 Veículos
-![Veículos](docs/img/veiculos.png)
-
-### 👤 Usuários
-![Usuários](docs/img/usuarios.png)
-
-### 🔧 Manutenções
-![Manutenções](docs/img/manutencoes.png)
-
----
-
 ## 🗄️ Banco de Dados
 
 O sistema utiliza **MySQL local**.
