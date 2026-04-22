@@ -1,0 +1,37 @@
+requiitso incias
+TransRota – Objetivo do Sistema e Requisitos Iniciais
+Finalidade do documento: Registrar o objetivo geral e o conjunto de requisitos funcionais, não funcionais e operacionais para o sistema de controle de frota logística.
+1. Premissas Adotadas:
+	O sistema é projetado para uma transportadora de pequeno ou médio porte com processos ainda manuais.
+	O uso principal será por pessoas com pouca familiaridade com computadores e sistemas de gestão.
+	Implementação técnica sugerida: Frontend em React, Backend em Java e Banco PostgreSQL.
+2. Objetivo Geral:
+	Desenvolver um sistema de controle de frota capaz de apoiar a administração da TransRota, reduzir prejuízos com vistorias vencidas e organizar informações sobre veículos que hoje estão dispersas em quadros brancos e na memória do proprietário.
+3. Objetivos Específicos:
+	Controlar o cadastro técnico e a disponibilidade de cada veículo da frota.
+	Monitorar prazos de vistorias, manutenções preventivas e corretivas.
+	Organizar a escala de veículos baseada na capacidade de carga e tipo de rota.
+	Fornecer ao mru vô uma visão clara de quais veículos geram mais custo ou estão parados por muito tempo.
+4. Requisitos Funcionais Iniciais (O que o sistema faz)
+Código	Descrição do Requisito Funcional
+RF01: O sistema deve permitir cadastrar veículos com placa, modelo, marca, ano e categoria.
+RF02: O sistema deve registrar a capacidade técnica de carga (kg e m^3) de cada veículo.
+RF03: O sistema deve permitir alterar o status do veículo (Disponível, Em Rota, Manutenção).
+RF04: O sistema deve emitir alertas sobre vistorias e licenças próximas do vencimento.
+RF05: O sistema deve registrar manutenções realizadas (troca de óleo, pneus, freios).
+RF06: O sistema deve permitir a consulta rápida de veículos por placa ou categoria.
+RF07: O sistema deve registrar a saída de um veículo para rota, vinculando motorista e destino.
+RF08: O sistema deve permitir a exclusão (ou baixa) de veículos vendidos ou acidentados.
+RF09: O sistema deve gerar relatórios simples de disponibilidade e histórico de manutenção.
+5. Requisitos Não Funcionais (Qualidade do sistema)
+Código Descrição do Requisito Não Funcional
+RNF01: A interface deve ser simples, com poucos passos e botões de fácil identificação.
+RNF02: O sistema deve ser utilizável por pessoas com pouca alfabetização digital.
+RNF03: O sistema deve garantir a persistência dos dados em banco PostgreSQL.
+RNF04: As mensagens de erro devem ser claras e em linguagem cotidiana da logística.
+RNF05: O tempo de resposta deve ser rápido para não atrasar a saída dos motoristas.
+6. Organização Modular para Implementação
+Módulo 1 – Cadastros: Veículos, Categorias, Motoristas e Fornecedores de Peças.
+Módulo 2 – Operação: Controle de Status (Disponível/Manutenção) e Alocação em Rotas.
+Módulo 3 – Manutenção: Checklists de revisão e histórico de reparos por veículo.
+Módulo 4 – Relatórios: Visão gerencial da frota e alertas de documentos vencidos

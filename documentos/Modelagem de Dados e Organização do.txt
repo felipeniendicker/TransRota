@@ -1,0 +1,25 @@
+Modelagem de Dados e Organização do Sistema
+Registrar a transição entre a história/requisitos e a fase de especificação técnica, definindo como os dados serão estruturados e como o sistema será dividido.
+
+1. Definição da Entidade Principal (Veículo)
+Para resolver os problemas de vistorias vencidas e falta de controle de carga citados na história, a estrutura de dados inicial focará nos seguintes campos:
+Campo,Tipo de Dado (Sugestão),Justificativa de Negócio
+ID,Long / Serial,Identificador único para controle interno do sistema.
+Placa,String (Varchar),Identificação oficial para evitar duplicidade de registros.
+Modelo,String (Varchar),Diferenciação entre vans e carretas para o setor de vendas.
+Capacidade KG,Decimal / Double,Garante que o veículo não saia com excesso de peso.
+Status,String / Enum,"Indica se está ""Disponível"", ""Em Rota"" ou ""Manutenção""."
+Data Vistoria,Date,Base para os alertas de documentos e segurança física.
+
+2. Sugestão de Organização Modular
+Para uma implementação acadêmica organizada, o sistema será dividido nos seguintes módulos:
+Módulo 1 – Cadastros: Veículos, Motoristas (opcional) e Categorias de frota.
+Módulo 2 – Operação e Status: Alteração de situação do veículo e registro de quem está em rota.
+Módulo 3 – Manutenção: Registro de vistorias, trocas de óleo e checklists de segurança.
+Módulo 4 – Consultas e Relatórios: Visão geral da frota para o Sr. Geraldo tomar decisões rápidas.
+
+3. Premissas de Implementação (Futuras
+interface (React): Deve ser objetiva, com botões claros para facilitar o uso por pessoas com pouca experiência digital.
+Persistência (PostgreSQL): Os dados devem ser preservados de forma íntegra para consultas posteriores.
+Backend (Java/Spring): Organizado em camadas (Controller, Service, Repository) para facilitar a manutenção acadêmica.
+

@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TransRota - Sistema de Gest&atilde;o</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <section class="login-screen" id="loginScreen">
+        <div class="login-panel">
+            <div class="login-brand">
+                <h1>TransRota</h1>
+                <p>Acesse o prot&oacute;tipo operacional</p>
+            </div>
+
+            <div class="feedback hidden" id="feedbackLogin"></div>
+
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" id="loginEmail" placeholder="chefe@transrota.com">
+            </div>
+
+            <div class="form-group">
+                <label>Senha</label>
+                <input type="password" id="loginSenha" placeholder="Digite sua senha">
+            </div>
+
+            <button class="btn-primary btn-login" onclick="autenticar()">Entrar</button>
+
+            <div class="login-hints">
+                <span>chefe@transrota.com</span>
+                <span>manutencao@transrota.com</span>
+                <span>comercial@transrota.com</span>
+                <small>Senha para teste: 123456</small>
+            </div>
+        </div>
+    </section>
+
+    <div class="app hidden" id="appShell">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>TransRota</h2>
+                <p>Sistema de Gest&atilde;o</p>
+            </div>
+
+            <nav class="sidebar-menu">
+                <ul>
+                    <li data-nav="dashboard" onclick="navegarPara('dashboard')">Dashboard</li>
+                    <li class="active" data-nav="veiculos" onclick="navegarPara('veiculos')">Ve&iacute;culos</li>
+                    <li data-nav="usuarios" onclick="navegarPara('usuarios')">Usu&aacute;rios</li>
+                    <li data-nav="manutencoes" onclick="navegarPara('manutencoes')">Manuten&ccedil;&otilde;es</li>
+                    <li onclick="sair()">Sair</li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="topbar">
+                <div>
+                    <h1 id="topbarTitulo">Ve&iacute;culos</h1>
+                    <p id="topbarSubtitulo">Gest&atilde;o operacional da frota</p>
+                </div>
+
+                <div class="topbar-right">
+                    <span class="user-chip" id="nomeUsuarioLogado">Usu&aacute;rio</span>
+                    <span class="perfil-badge" id="perfilUsuarioLogado">CHEFE</span>
+                </div>
+            </header>
+
+            <section class="content">
+                <section class="view hidden" data-view="dashboard">
+                    <div class="page-header">
+                        <div>
+                            <h2>Dashboard</h2>
+                            <p>Vis&atilde;o geral do sistema TransRota.</p>
+                        </div>
+                    </div>
+
+                    <div class="cards">
+                        <div class="card">
+                            <h3>Ve&iacute;culos ativos</h3>
+                            <p id="totalVeiculosAtivos">0</p>
+                        </div>
+
+                        <div class="card">
+                            <h3>Em rota</h3>
+                            <p id="totalVeiculosRota">0</p>
+                        </div>
+
+                        <div class="card">
+                            <h3>Em manuten&ccedil;&atilde;o</h3>
+                            <p id="totalVeiculosManutencao">0</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="view active" data-view="veiculos">
+                    <div class="page-header">
+                        <div>
+                            <h2>Ve&iacute;culos</h2>
+                            <p>Cadastro, consulta e desativa&ccedil;&atilde;o l&oacute;gica da frota.</p>
+                        </div>
+                        <button class="btn-primary" onclick="abrirForm()">+ Novo ve&iacute;culo</button>
+                    </div>
+
+                <div class="filters">
+                    <input type="text" id="filtroBuscaVeiculo" placeholder="Buscar por placa, modelo ou marca" oninput="renderizarVeiculos()">
+
+                    <select id="filtroCategoriaVeiculo" onchange="renderizarVeiculos()">
+                        <option value="">Todas as categorias</option>
+                        <option>Van</option>
+                        <option value="Caminhao">Caminh&atilde;o</option>
+                        <option value="Utilitario">Utilit&aacute;rio</option>
+                    </select>
+
+                    <select id="filtroStatusVeiculo" onchange="renderizarVeiculos()">
+                        <option value="">Todos os status</option>
+                        <option>DISPONIVEL</option>
+                        <option>EM_ROTA</option>
+                        <option>MANUTENCAO</option>
+                        <option>BAIXADO</option>
+                    </select>
+                </div>
+
+                <div class="feedback hidden" id="feedbackVeiculo"></div>
+
+                <div class="form-card hidden" id="formVeiculo">
+                    <h3 id="tituloFormVeiculo">Cadastrar ve&iacute;culo</h3>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Placa</label>
+                            <input type="text" id="placa" placeholder="ABC1D23" maxlength="8">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Modelo</label>
+                            <input type="text" id="modelo" placeholder="Sprinter">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Marca</label>
+                            <input type="text" id="marca" placeholder="Mercedes-Benz">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Ano</label>
+                            <input type="number" id="ano" placeholder="2022" min="1980" max="2026">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Categoria</label>
+                            <select id="categoria">
+                                <option value="">Selecione</option>
+                                <option>Van</option>
+                                <option value="Caminhao">Caminh&atilde;o</option>
+                                <option value="Utilitario">Utilit&aacute;rio</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Capacidade (Kg)</label>
+                            <input type="number" id="capacidade" placeholder="1200" min="1">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Status</label>
+                            <select id="status">
+                                <option value="">Selecione</option>
+                                <option>DISPONIVEL</option>
+                                <option>EM_ROTA</option>
+                                <option>MANUTENCAO</option>
+                                <option>BAIXADO</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button class="btn-primary" onclick="salvarVeiculo()">Salvar</button>
+                        <button class="btn-secondary" onclick="fecharForm()">Cancelar</button>
+                    </div>
+                </div>
+
+                <div class="table-wrap">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Placa</th>
+                                <th>Modelo</th>
+                                <th>Marca</th>
+                                <th>Ano</th>
+                                <th>Categoria</th>
+                                <th>Capacidade</th>
+                                <th>Status</th>
+                                <th>A&ccedil;&otilde;es</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabelaVeiculos"></tbody>
+                    </table>
+                </div>
+
+                <div class="empty-state hidden" id="veiculosVazio">
+                    Nenhum ve&iacute;culo ativo encontrado para os filtros selecionados.
+                </div>
+                </section>
+
+                <section class="view hidden" data-view="usuarios">
+                    <div class="page-header">
+                        <div>
+                            <h2>Usu&aacute;rios</h2>
+                            <p>M&oacute;dulo administrativo para gerenciamento de acesso.</p>
+                        </div>
+                        <button class="btn-primary" onclick="abrirFormUsuario()">+ Novo usu&aacute;rio</button>
+                    </div>
+
+                    <div class="admin-note">
+                        <strong>Administrativo</strong>
+                        <span>Gerenciamento previsto para perfil CHEFE. Nesta etapa, o acesso ainda n&atilde;o bloqueia a navega&ccedil;&atilde;o.</span>
+                    </div>
+
+                    <div class="filters">
+                        <input type="text" id="filtroBuscaUsuario" placeholder="Buscar por nome ou email" oninput="renderizarUsuarios()">
+
+                        <select id="filtroPerfilUsuario" onchange="renderizarUsuarios()">
+                            <option value="">Todos os perfis</option>
+                            <option>CHEFE</option>
+                            <option>COMERCIAL</option>
+                            <option>MANUTENCAO</option>
+                        </select>
+                    </div>
+
+                    <div class="feedback hidden" id="feedbackUsuario"></div>
+
+                    <div class="form-card hidden" id="formUsuario">
+                        <h3 id="tituloFormUsuario">Cadastrar usu&aacute;rio</h3>
+
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>Nome</label>
+                                <input type="text" id="usuarioNome" placeholder="Nome completo">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="email" id="usuarioEmail" placeholder="usuario@transrota.com">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Senha</label>
+                                <input type="password" id="usuarioSenha" placeholder="Senha inicial">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Perfil</label>
+                                <select id="usuarioPerfil">
+                                    <option value="">Selecione</option>
+                                    <option>CHEFE</option>
+                                    <option>COMERCIAL</option>
+                                    <option>MANUTENCAO</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button class="btn-primary" onclick="salvarUsuario()">Salvar</button>
+                            <button class="btn-secondary" onclick="fecharFormUsuario()">Cancelar</button>
+                        </div>
+                    </div>
+
+                    <div class="table-wrap">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Email</th>
+                                    <th>Perfil</th>
+                                    <th>Status</th>
+                                    <th>A&ccedil;&otilde;es</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabelaUsuarios"></tbody>
+                        </table>
+                    </div>
+
+                    <div class="empty-state hidden" id="usuariosVazio">
+                        Nenhum usu&aacute;rio ativo encontrado para os filtros selecionados.
+                    </div>
+                </section>
+
+                <section class="view hidden" data-view="manutencoes">
+                    <div class="page-header">
+                        <div>
+                            <h2>Manuten&ccedil;&otilde;es</h2>
+                            <p>Registro e acompanhamento b&aacute;sico das manuten&ccedil;&otilde;es da frota.</p>
+                        </div>
+                        <button class="btn-primary" onclick="abrirFormManutencao()">+ Nova manuten&ccedil;&atilde;o</button>
+                    </div>
+
+                    <div class="filters">
+                        <input type="text" id="filtroBuscaManutencao" placeholder="Buscar por placa ou descri&ccedil;&atilde;o" oninput="renderizarManutencoes()">
+
+                        <select id="filtroStatusManutencao" onchange="renderizarManutencoes()">
+                            <option value="">Todos os status</option>
+                            <option>ABERTA</option>
+                            <option>EM_ANDAMENTO</option>
+                            <option>CONCLUIDA</option>
+                        </select>
+                    </div>
+
+                    <div class="feedback hidden" id="feedbackManutencao"></div>
+
+                    <div class="form-card hidden" id="formManutencao">
+                        <h3 id="tituloFormManutencao">Cadastrar manuten&ccedil;&atilde;o</h3>
+
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>Ve&iacute;culo</label>
+                                <select id="manutencaoVeiculo"></select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Status</label>
+                                <select id="manutencaoStatus">
+                                    <option value="">Selecione</option>
+                                    <option>ABERTA</option>
+                                    <option>EM_ANDAMENTO</option>
+                                    <option>CONCLUIDA</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Data de abertura</label>
+                                <input type="date" id="manutencaoDataAbertura">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Descri&ccedil;&atilde;o</label>
+                                <input type="text" id="manutencaoDescricao" placeholder="Ex: Revis&atilde;o de freios">
+                            </div>
+
+                            <div class="form-group form-wide">
+                                <label>Observa&ccedil;&atilde;o</label>
+                                <input type="text" id="manutencaoObservacao" placeholder="Observa&ccedil;&atilde;o operacional">
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button class="btn-primary" onclick="salvarManutencao()">Salvar</button>
+                            <button class="btn-secondary" onclick="fecharFormManutencao()">Cancelar</button>
+                        </div>
+                    </div>
+
+                    <div class="table-wrap">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Ve&iacute;culo</th>
+                                    <th>Descri&ccedil;&atilde;o</th>
+                                    <th>Data de abertura</th>
+                                    <th>Status</th>
+                                    <th>Observa&ccedil;&atilde;o</th>
+                                    <th>A&ccedil;&otilde;es</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabelaManutencoes"></tbody>
+                        </table>
+                    </div>
+
+                    <div class="empty-state hidden" id="manutencoesVazio">
+                        Nenhuma manuten&ccedil;&atilde;o ativa encontrada para os filtros selecionados.
+                    </div>
+
+                    <div class="details-panel hidden" id="detalhesManutencao">
+                        <div class="details-header">
+                            <h3>Detalhes da manuten&ccedil;&atilde;o</h3>
+                            <button class="btn-secondary" onclick="fecharDetalhesManutencao()">Fechar</button>
+                        </div>
+                        <div class="details-grid" id="conteudoDetalhesManutencao"></div>
+                    </div>
+                </section>
+            </section>
+        </main>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

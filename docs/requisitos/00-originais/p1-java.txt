@@ -1,0 +1,34 @@
+p1 java
+
+historia:
+
+meu avô é dono de uma empresa de frota logística chamada TransRota Nien, começou por baixo, apenas com frotas dentro do próprio município, com um ou outro caminhão, no qual ele ainda conseguia memorizar cada rota, cada troca de óleo. mas que muita luta, dificuldade e suor chegou em um patamar que nem ele esperava, atualmente possui uma frota diversificada com cerca de 20 veículos, entre vans urbanas para as entregas locais e carretas de grande porte para o resto da região sudeste, e até certo momento mesmo com a expansão da sua empresa, ele ainda mantém o controle de frota uma planilha compartilhada e um quadro branco na parede da garagem, e com esse crescimento da empresa chegou na fase na qual meu avô não consegue mais gerenciar apenas com a memória ou com o quadro branco que fica na garagem.
+e o maior problema surge no momento de vendas de serviços, nos quais o setor comercial fecha contratos de entrega sem saber com precisão se existe veículo disponível para tal serviço, e frequentemente anda ocorrendo que de última hora que o caminhão designado está na oficina ou já está em outra rota. Recentemente a empresa perdeu um contrato importante porque enviou um veículo com a vistoria vencida, que acabou apreendido em uma fiscalização, gerando prejuízo financeiro e danos à imagem da empresa,
+e pensando nisso, ele chegou a realizar tópicos sobre o que acontece, sobre o que falta, e como esta afetando o seu bem mais valioso, como por exemplo:
+a manutenção e segurança, ela é feita de forma reativa: o problema só é tratado quando o caminhão para de funcionar ou quebra na estrada. não existe um registro confiável de quando foi a última troca de pneus, revisão de freios ou troca de óleo. Itens de segurança básicos, como extintores e vistorias obrigatórias, acabam ficando sem acompanhamento, colocando em risco os motoristas e a carga.
+a capacidade e desperdício, existe uma confusão constante sobre a capacidade de carga de cada veículo. Por falta de um cadastro centralizado e detalhado (contendo peso máximo e volume em m3), é comum enviar uma carreta subutilizada para uma entrega pequena ou, pior, tentar sobrecarregar uma van urbana, o que causa multas e desgaste prematuro do veículo.
+O Ciclo de Vida do Patrimônio, a empresa também sofre para gerenciar a entrada e saída de ativos. Quando um veículo antigo é vendido ou sofre perda total, a informação demora a ser atualizada. Isso faz com que veículos que nem pertencem mais à frota continuem aparecendo nos planos de rota, gerando retrabalho administrativo.
+e com esses fatores mais explicios para ele, meu avô, que anda ficando de cabelo em pé, percebeu que a falta de uma "visão única" da frota está impedindo a empresa de lucrar mais. A necessidade de um sistema surgiu não por luxo, mas pela urgência de organizar o que entra, o que sai e, principalmente, qual é a real condição de cada veículo. Antes de pensar em bancos de dados ou telas, o foco é garantir que nenhum caminhão saia da garagem sem estar em condições seguras e legais de rodar.
+
+tabela
+Área,Problema Observado,Impacto Prático
+Disponibilidade,"Falta de visão real sobre quais veículos estão livres, em rota ou em manutenção.",Perda de contratos e atrasos nas entregas.
+Manutenção,"Revisões e vistorias feitas apenas quando algo quebra ou há fiscalização.",Veículos parados na estrada e multas por documentação vencida.
+Capacidade,Desconhecimento técnico preciso (peso/volume) de cada item da frota no ato da escala.,Fretes ineficientes (veículos grandes para cargas pequenas) ou excesso de peso.
+Cadastro de Ativos,"Informações sobre compra, venda ou baixa de veículos desorganizadas.",Erros no inventário da empresa e planejamento sobre veículos inexistentes.
+Gestão Geral,Dependência total da memória do dono e de anotações físicas.,Sobrecarga do Sr. Geraldo e falta de profissionalismo na operação.
+
+3. Perguntas de Operabilidade (Resumo Inicial)
+O sistema será usado apenas no escritório?
+Não. O ideal é que o mecânico na oficina também possa atualizar o status de manutenção e o assistente no pátio possa consultar a disponibilidade.
+
+Como será feita a atualização de um veículo que quebrou?
+Através de uma tela simples de "Alteração", onde o status muda de "Disponível" para "Manutenção" imediatamente, bloqueando-o para novas rotas.
+
+As pessoas que usarão o sistema têm facilidade com tecnologia?
+Assim como o Sr. Geraldo, a equipe está acostumada ao papel. A interface deve ser limpa, com botões grandes e termos simples (ex: "Caminhão na Rua" em vez de "Status: Busy").
+
+O que acontece se um veículo for vendido?
+O sistema deve permitir a "Exclusão" (ou desativação) do registro para que ele suma da listagem de prontos para viagem, mantendo apenas o histórico se necessário.
+
+Então como objetivo final, queremos que ao final do dia, o sistema deve garantir que o meu avô olhe para a tela e tenha a segurança de que cada placa listada ali representa um patrimônio pronto para gerar lucro, com as manutenções em dia e a capacidade de carga respeitada. O sistema não é apenas um banco de dados, é o painel de controle da saúde financeira da TransRota.
