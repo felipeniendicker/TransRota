@@ -83,7 +83,7 @@ Além disso:
 ## 📸 Interface do Sistema
 
 ### 🔐 Login
-![Login](docs/img/login.png)
+![Login](docs/imgs/Login.png)
 
 ### 📊 Dashboard
 ![Dashboard](docs/img/dashboard.png)
