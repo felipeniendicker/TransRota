@@ -81,8 +81,7 @@ Além disso:
 
 ## 📊 Diagrama de Atividades
 
-[Ver diagrama](docs/<img width="16384" height="9456" alt="Diagrama-Atividades-TransRota drawio" src="https://github.com/user-attachments/assets/378d6d12-0fe7-4b25-a951-6acaebbb3924" />)
-
+[Ver diagrama](docs/Diagrama-Atividades-TransRota.draw.io)
 
 ## 🗄️ Banco de Dados
 
