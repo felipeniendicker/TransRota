@@ -79,6 +79,10 @@ Além disso:
 
 ---
 
+## 📊 Diagrama de Atividades
+
+[Ver diagrama](docs/diagrama-transrota.drawio)
+
 ## 🗄️ Banco de Dados
 
 O sistema utiliza **MySQL local**.
